@@ -5,7 +5,7 @@ import (
 	"github.com/MikVG/note-tracker/internal/config"
 	"github.com/MikVG/note-tracker/internal/repo/memstorage"
 	"github.com/MikVG/note-tracker/internal/server"
-	// "github.com/MikVG/note-tracker/pkg/logger"
+	"github.com/MikVG/note-tracker/pkg/logger"
 )
 
 func main() {
@@ -18,9 +18,9 @@ func main() {
 
 	server := server.New(*cfg, repo)
 
-	// log := logger.Get(cfg.Debug)
-	// log.Debug().Msg("logger was initialized")
-	// log.Debug().Str("host", cfg.Host).Int("port", cfg.Port).Send()
+	log := logger.Get(cfg.Debug)
+	log.Debug().Msg("logger was initialized")
+	log.Debug().Str("host", cfg.Host).Int("port", cfg.Port).Send()
 	// app := app.NewApp(*cfg, server, nil)
 
 	if err := server.Start(); err != nil {
