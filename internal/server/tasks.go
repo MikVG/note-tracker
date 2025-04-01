@@ -2,6 +2,7 @@ package server
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/MikVG/note-tracker/internal/domain/models"
 	"github.com/gin-gonic/gin"
@@ -25,6 +26,12 @@ func (s *ServerApi) createTask(c *gin.Context) {
 	}
 
 	task.TID = uuid.New().String()
+
+	now := time.Now()
+
+	task.Status = "pending"
+	task.CreatedAt = now
+	task.UpdatedAt = now
 
 	if err := s.repo.SaveTask(task); err != nil {
 		c.JSON(http.StatusConflict, gin.H{"error": err.Error()})
