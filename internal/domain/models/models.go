@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-type Tasks struct {
+type Task struct {
 	TID         string    `json:"tid"`
 	Title       string    `json:"title"`
 	Description string    `json:"description"`

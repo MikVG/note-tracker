@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/MikVG/note-tracker/internal/app"
+	// "github.com/MikVG/note-tracker/internal/app"
 	"github.com/MikVG/note-tracker/internal/config"
+	"github.com/MikVG/note-tracker/internal/repo/memstorage"
 	"github.com/MikVG/note-tracker/internal/server"
-	"github.com/MikVG/note-tracker/pkg/logger"
+	// "github.com/MikVG/note-tracker/pkg/logger"
 )
 
 func main() {
@@ -13,13 +14,16 @@ func main() {
 		panic(err)
 	}
 
-	log := logger.Get(cfg.Debug)
-	log.Debug().Msg("logger was initialized")
-	log.Debug().Str("host", cfg.Host).Int("port", cfg.Port).Send()
-	server := server.New(*cfg, nil)
-	app := app.NewApp(*cfg, server, nil)
+	repo := memstorage.New()
 
-	if err := app.StartApp(); err != nil {
+	server := server.New(*cfg, repo)
+
+	// log := logger.Get(cfg.Debug)
+	// log.Debug().Msg("logger was initialized")
+	// log.Debug().Str("host", cfg.Host).Int("port", cfg.Port).Send()
+	// app := app.NewApp(*cfg, server, nil)
+
+	if err := server.Start(); err != nil {
 		panic(err)
 	}
 }
