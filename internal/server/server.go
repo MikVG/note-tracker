@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/MikVG/note-tracker/internal/config"
+	"github.com/MikVG/note-tracker/pkg/logger"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
-	"honnef.co/go/tools/config"
 )
 
 type ServerApi struct {
