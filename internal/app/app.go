@@ -3,15 +3,16 @@ package app
 import (
 	"github.com/MikVG/note-tracker/internal/config"
 	"github.com/MikVG/note-tracker/internal/server"
+	"github.com/MikVG/note-tracker/internal/service"
 )
 
 type App struct {
 	cfg       config.Config
 	ServerApi *server.ServerApi
-	repo      server.Repository
+	repo      service.Repository
 }
 
-func NewApp(cfg config.Config, server *server.ServerApi, repo server.Repository) *App {
+func NewApp(cfg config.Config, server *server.ServerApi, repo service.Repository) *App {
 	return &App{
 		cfg:       cfg,
 		ServerApi: server,
